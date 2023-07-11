@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{28F66A2B-9FF2-43E8-8904-6CD19CA5410B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DatabaseAccess</RootNamespace>
+    <AssemblyName>DatabaseAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CloudDbV1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudDbV1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CloudDbV1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CloudDbV1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudDbV1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Code\DatabaseQuery.cs" />
+    <Compile Include="Code\PurchaseEntry.cs" />
+    <Compile Include="Code\SaleEntry.cs" />
+    <Compile Include="Code\SP_Code\SP_Purchase.cs" />
+    <Compile Include="Code\SP_Code\SP_Sale.cs" />
+    <Compile Include="Model\SalePaymentModel.cs" />
+    <Compile Include="Model\PurchasePaymentModel.cs" />
+    <Compile Include="Model\SupplierReturnInvoiceModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountActivity.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountControl.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountHead.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountSetting.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountSubControl.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBranch.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBranchType.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCategory.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCompany.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCustomer.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCustomerInvoice.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCustomerInvoiceDetail.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCustomerPayment.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCustomerReturnInvoice.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCustomerReturnInvoiceDetail.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCustomerReturnPayment.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployee.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblFinancialYear.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPayroll.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPurchaseCartDetail.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSaleCartDetail.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblStock.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSupplier.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSupplierInvoice.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSupplierInvoiceDetail.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSupplierPayment.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSupplierReturnInvoice.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSupplierReturnInvoiceDetail.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSupplierReturnPayment.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTransaction.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUser.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUserType.cs">
+      <DependentUpon>CloudDbV1.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="CloudDbV1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CloudDbV1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="CloudDbV1.edmx.diagram">
+      <DependentUpon>CloudDbV1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CloudDbV1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CloudDbV1.Context.cs</LastGenOutput>
+      <DependentUpon>CloudDbV1.edmx</DependentUpon>
+    </Content>
+    <Content Include="CloudDbV1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CloudDbV1.edmx</DependentUpon>
+      <LastGenOutput>CloudDbV1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

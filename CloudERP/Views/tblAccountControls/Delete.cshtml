@@ -1,0 +1,64 @@
+﻿@model DatabaseAccess.tblAccountControl
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tblAccountControl</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountHeadID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountHeadID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountControlName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountControlName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblBranch.BranchName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblBranch.BranchName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUser.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUser.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblCompany.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCompany.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

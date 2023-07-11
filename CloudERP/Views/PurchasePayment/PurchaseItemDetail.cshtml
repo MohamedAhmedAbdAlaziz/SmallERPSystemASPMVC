@@ -1,0 +1,85 @@
+﻿@model IEnumerable<DatabaseAccess.tblSupplierInvoiceDetail>
+
+@*@{
+        ViewBag.Title = "PurchaseItemDetail";
+    }*@
+
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+@{
+    double total = 0;
+
+    <div class="card">
+        <div class="card card-flat ">
+            <div class="card-header">
+                <h2 class="text-success">
+                    Purchase Products Detail
+                </h2>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <tr>
+
+                        <th>
+                            Product
+                        </th>
+                        <th>
+                            Qty
+                        </th>
+                        <th>
+                            Unit Price
+                        </th>
+                        <th>Item Cost</th>
+
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+
+                        ViewBag.Title = "Purchase Invoice No" + item.tblSupplierInvoice.InvoiceNo;
+                        int qty = 0;
+                        double itemcost = 0;
+                        qty = item.PurchaseQuantity - item.tblSupplierReturnInvoiceDetails.Where(q => q.ProductID == item.ProductID).Sum(q => q.PurchaseReturnQuantity);
+                        itemcost = qty * item.purchaseUnitPrice;
+
+
+                        total = total + itemcost;
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tblStock.ProductName)
+                            </td>
+                            <td>
+                                @qty
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.purchaseUnitPrice)
+                            </td>
+                            <td class="text-left">
+                                @*<label>@(item.PurchaseQuantity * item.purchaseUnitPrice)</label>*@
+                                @itemcost
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-lg-6"></div>
+                <div class="col-lg-6 py-2">
+
+
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-7">
+                            <div class="h3">GRAND TOTAL</div>
+                        </div>
+                        <div class="col-5">
+                            <div class="text-left h3">PEG @total.ToString("F2")</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }

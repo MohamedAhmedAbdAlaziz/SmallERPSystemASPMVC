@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="defb1a90e6614c2f9536f21eebc353ba" Name="Diagram1">
+        <EntityTypeShape EntityType="CloudErpV1Model.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblAccountActivity" Width="1.5" PointX="7.5" PointY="42.875" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblAccountControl" Width="1.5" PointX="5.25" PointY="34.75" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblAccountHead" Width="1.5" PointX="5.25" PointY="49.875" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblAccountSetting" Width="1.5" PointX="9.75" PointY="42" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblAccountSubControl" Width="1.5" PointX="7.5" PointY="38.625" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblBranch" Width="1.5" PointX="3" PointY="20.625" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblBranchType" Width="1.5" PointX="0.75" PointY="22.875" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblCategory" Width="1.5" PointX="8.25" PointY="26.125" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblCompany" Width="1.5" PointX="3" PointY="36.375" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblCustomer" Width="1.5" PointX="5.25" PointY="29.5" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblCustomerInvoice" Width="1.5" PointX="10.5" PointY="32.125" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblCustomerInvoiceDetail" Width="1.5" PointX="15.75" PointY="31.875" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblCustomerPayment" Width="1.5" PointX="15.75" PointY="35.5" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblCustomerReturnInvoice" Width="1.5" PointX="12.75" PointY="34.375" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblCustomerReturnInvoiceDetail" Width="1.5" PointX="21" PointY="32.5" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblCustomerReturnPayment" Width="1.5" PointX="21" PointY="37.125" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblEmployee" Width="1.5" PointX="6" PointY="19.375" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblFinancialYear" Width="1.5" PointX="5.25" PointY="53.375" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblPayroll" Width="1.5" PointX="8.25" PointY="29.625" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblPurchaseCartDetail" Width="1.5" PointX="18.75" PointY="33.625" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblSaleCartDetail" Width="1.5" PointX="18.75" PointY="29.5" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblStock" Width="1.5" PointX="13.5" PointY="27.625" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblSupplier" Width="1.5" PointX="5.25" PointY="24.375" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblSupplierInvoice" Width="1.5" PointX="10.5" PointY="22.5" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblSupplierInvoiceDetail" Width="1.5" PointX="18.75" PointY="25.625" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblSupplierPayment" Width="1.5" PointX="10.5" PointY="27.875" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblSupplierReturnInvoice" Width="1.5" PointX="15.75" PointY="26.5" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblSupplierReturnInvoiceDetail" Width="1.5" PointX="24" PointY="26.25" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblSupplierReturnPayment" Width="1.5" PointX="21" PointY="26.375" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblTransaction" Width="1.5" PointX="12.75" PointY="39.75" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblUser" Width="1.5" PointX="3" PointY="28.125" />
+        <EntityTypeShape EntityType="CloudErpV1Model.tblUserType" Width="1.5" PointX="0.75" PointY="30.625" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountSetting_tblAccountActivity" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountControl_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountControl_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountControl_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountSetting_tblAccountControl" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountSubControl_tblAccountControl" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblTransaction_tblAccountControl" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountHead_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountSetting_tblAccountHead" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountSubControl_tblAccountHead" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblTransaction_tblAccountHead" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblTransection_tblAccountHead" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountSetting_tblAccountSubControl" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountSetting_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountSetting_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountSubControl_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblAccountSubControl_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblTransection_tblAccountSubControl" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblBranch_tblBranchType" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCategory_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomer_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerInvoice_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerPayment_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnInvoice_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnPayment_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblEmployee_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblPayroll_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblPurchaseCartDetail_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSaleCartDetail_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblStock_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplier_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierInvoiceTable_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnInvoice_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnPayment_tblBranch" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCategory_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCategory_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblStock_tblCategory" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomer_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerInvoice_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerPayment_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnInvoice_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnPayment_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblEmployee_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblPayroll_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblPurchaseCartDetail_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSaleCartDetail_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblStock_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplier_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierInvoiceTable_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnInvoice_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnPayment_tblCompany" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomer_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerInvoice_tblCustomer" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnInvoice_tblCustomer" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnPayment_tblCustomer" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerInvoice_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerInvoiceDetail_tblCustomerInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerPayment_tblCustomerInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnInvoice_tblCustomerInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnInvoiceDetail_tblCustomerInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnPayment_tblCustomerInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerInvoiceDetail_tblStock" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnInvoiceDetail_tblCustomerInvoiceDetail" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerPayment_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnInvoice_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnInvoiceDetail_tblCustomerReturnInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnPayment_tblCustomerReturnInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnInvoiceDetail_tblStock" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblCustomerReturnPayment_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblPayroll_tblEmployee" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblFinancialYear_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblTransaction_tblFinancialYear" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblTransection_tblFinancialYear" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblPayroll_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblPurchaseCartDetail_tblStock" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblPurchaseCartDetail_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSaleCartDetail_tblStock" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSaleCartDetail_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblStock_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierInvoiceDetail_tblStock" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnInvoiceDetail_tblStock" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplier_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierInvoiceTable_tblSupplier" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierPayment_tblSupplier" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnInvoice_tblSupplier" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnPayment_tblSupplier" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierInvoice_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierInvoiceDetail_tblSupplierInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnInvoice_tblSupplierInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnInvoiceDetail_tblSupplierInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnPayment_tblSupplierInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnInvoiceDetail_tblSupplierInvoiceDetail" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierPayment_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnInvoice_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnInvoiceDetail_tblSupplierReturnInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnPayment_tblSupplierReturnInvoice" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblSupplierReturnPayment_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblTransaction_tblUser" />
+        <AssociationConnector Association="CloudErpV1Model.FK_tblUser_tblUserType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

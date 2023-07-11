@@ -1,0 +1,211 @@
+﻿@model IEnumerable<DatabaseAccess.Model.PurchasePaymentModel>
+
+@{
+    ViewBag.Title = "Castom Base Purchases History";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<div class="card">
+    <div class="card card-flat ">
+        <div class="card-header">
+
+            <h3>Select Range (From date to Date)</h3>
+
+            @*<input class="form-control col-md-3" style="float:right" type="text" id="search" name="search" placeholder="search here" />*@
+            <h5 class="text-danger">@ViewBag.Message</h5>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("CustomPurchasesHistory", "PurchasePayment", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="text" id="id" value="@ViewBag.InvoiceID" name="id" style="display:none;" />
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Select from Date</label>
+                        @*<input type="date" id="FromDate" name="FromDate" value="@DateTime.Now" class="form-control" required />*@
+                        @Html.TextBox("FromDate", "{0:yyyy-MM-dd}", new
+            {
+                @class = "form-control input-sm datepicker",
+                @Value = @DateTime.Now,
+                @type = "date",
+                placeholder = "Date of Birth",
+                id = "FromDate",
+                max = DateTime.Today.ToString("yyyy-MM-dd")
+            })
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Select To Date</label>
+                        @*<input type="date" id="ToDate" name="ToDate" value="@DateTime.Now" class="form-control" required />*@
+                        @Html.TextBox("ToDate", "{0:yyyy-MM-dd}", new
+        {
+            @class = "form-control input-sm datepicker",
+            @Value = @DateTime.Now,
+            @type = "date",
+            placeholder = "Date of Birth",
+            id = "ToDate",
+            max = DateTime.Today.ToString("yyyy-MM-dd")
+        })
+                    </div>
+                </div>
+                <br />
+                <hr />
+                <input type="submit" value="Retrive Purchases Record" class="btn btn-success" style="float:right;" />
+
+            }
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card card-flat ">
+        <div class="card-header">
+            <h5 style="float:left">@Session["Message"]</h5>
+            <input class="form-control col-md-3" style="float:right" type="text" id="search" name="search" placeholder="search here" />
+        </div>
+        <div class="card-body">
+            <div class="table-responsive ">
+                @*<div class="table-responsive bootgrid">*@
+                @*<table class="table table-striped" id="bootgrid-basic">*@
+                <table class="table table-striped table-bordered table-hover " id="dataTable">
+
+                    @*<table class="table table-responsive-sm bootgrid">*@
+                    <thead>
+                        <tr>
+                            @*<th style="display:none;">
+            SupplierInvoiceID
+        </th>*@
+                            <th>
+                                Supplier
+                            </th>
+                            <th>
+                                Contact No
+                            </th>
+                            <th>
+                                Invoice No
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Total Amount
+                            </th>
+                         
+                            <th>
+                                Paid Amount
+                            </th>
+ 
+                            <th>
+                                Remaing Balance
+                            </th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody id="FinancialYearlist">
+                        @foreach (var item in Model)
+                        {
+
+                        <tr>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.SupplierName)*@
+                                @Html.ActionLink(item.SupplierName, "SuplierDetails", "tblSuppliers", new { id = item.SupplierID }, null)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SupplierConatctNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InvoiceNo)
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.InvoiceDate)*@
+
+                                @item.InvoiceDate.ToString("MMMM dd, yyyy")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalAmount)
+                            </td>
+                       
+         
+                            <td>
+                                @if (item.PaymentAmount == 0 )
+                                {
+
+                                    @Html.ActionLink("Set Payment", "PaidAmount", new { id = item.SupplierInvoiceID }, new { @class = "btn btn-success" })
+                                }
+                                else
+                                {
+
+
+
+
+                                    @Html.DisplayFor(modelItem => item.PaymentAmount)
+                                }
+                            </td>
+                         
+                            <td>
+
+                                @if (item.RemainingBalance == 0 && item.PaymentAmount != 0)
+                                {
+                                    <em class="icon-check"></em>
+                                    <label class="text-success">paid</label>
+                                }
+                             
+                                else
+                                {
+                                    @*@Html.DisplayFor(modelItem => item.RemainingBalance)*@
+                                    @*<label>@(item.TotalAmount-item.PaymentAmount)</label>*@
+                                    <label>@Html.DisplayFor(modelItem => item.RemainingBalance)</label>
+                                }
+
+
+                            </td>
+                            <td>
+
+                                @if (item.RemainingBalance < item.TotalAmount && item.PaymentAmount != 0)
+                                {
+                                    @Html.ActionLink("Paid History", "PaidHistory", new { id = item.SupplierInvoiceID }, new { @class = "btn btn-primary" })
+                                }
+                                else
+                                {
+                                    <em class="icon-book-open">
+                                        <label class="text-danger">No History</label>
+                                    </em>
+                                }
+                                @Html.ActionLink("View Details", "PurchaseItemDetail", new { id = item.SupplierInvoiceID }, new { @class = "btn btn-info" })
+
+                            </td>
+
+
+
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#FinancialYearlist tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+            });
+        });
+    });
+</script>
+
+<script>
+    document.getElementById('FromDate').value = new Date().toISOString().substring(0, 10);
+    document.getElementById('ToDate').value = new Date().toISOString().substring(0, 10);
+
+</script>

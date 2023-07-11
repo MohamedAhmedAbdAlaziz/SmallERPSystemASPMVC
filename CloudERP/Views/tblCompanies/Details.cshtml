@@ -1,0 +1,62 @@
+﻿@model DatabaseAccess.tblCompany
+
+@{
+    ViewBag.Title = "Company Details";
+}
+
+<div class="card">
+    <div class="row row-flush" style="height:300px">
+        <div class="col-5 d-flex align-items-center justify-content-center" style=" background-image: url('@Url.Content(Model.Logo)');
+        background-repeat: no-repeat;"></div>
+            <div class="col-7">
+                <div class="p-3">
+                    <div class="float-right">
+                        @Html.ActionLink("Edit Profile", "Edit", new { id = Model.CompanyID }, new { @class = "btn btn-primary btn-sm" })
+                    </div>
+
+
+                    <p>
+                        <strong class="text-lg"> @Html.DisplayFor(model => model.Name)</strong>
+                    </p>
+                    <p>
+                        If you have individual software solutions that work,
+                        but don't talk to each other, you are probably
+                        entering things more than once and missing a comprehensive
+                        overview of what's going on.
+
+
+                    </p>
+                </div>
+            </div>
+        
+    </div>
+</div>
+@*
+    <h2>Company</h2>
+
+    <div>
+        <h4>Details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+              Company Title
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                Logo
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Logo)
+            </dd>
+
+        </dl>
+    </div>*@
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

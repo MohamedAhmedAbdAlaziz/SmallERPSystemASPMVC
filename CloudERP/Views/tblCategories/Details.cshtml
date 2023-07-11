@@ -1,0 +1,50 @@
+﻿@model DatabaseAccess.tblCategory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblCategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.categoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblBranch.BranchName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblBranch.BranchName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUser.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUser.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblCompany.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCompany.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

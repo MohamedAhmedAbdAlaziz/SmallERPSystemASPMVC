@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudERP", "CloudERP\CloudERP.csproj", "{DCAEB572-4888-4C5E-99DE-4DB6969393E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAccess", "DatabaseAccess\DatabaseAccess.csproj", "{28F66A2B-9FF2-43E8-8904-6CD19CA5410B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCAEB572-4888-4C5E-99DE-4DB6969393E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCAEB572-4888-4C5E-99DE-4DB6969393E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCAEB572-4888-4C5E-99DE-4DB6969393E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCAEB572-4888-4C5E-99DE-4DB6969393E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28F66A2B-9FF2-43E8-8904-6CD19CA5410B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28F66A2B-9FF2-43E8-8904-6CD19CA5410B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28F66A2B-9FF2-43E8-8904-6CD19CA5410B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28F66A2B-9FF2-43E8-8904-6CD19CA5410B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC95A350-5D89-4922-B3CF-BE9667432A2B}
+	EndGlobalSection
+EndGlobal

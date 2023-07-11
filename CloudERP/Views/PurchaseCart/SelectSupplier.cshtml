@@ -1,0 +1,163 @@
+﻿@model IEnumerable<DatabaseAccess.tblSupplier>
+
+@{
+    ViewBag.Title = "Finilize purchasing";
+}
+
+
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+@using (Html.BeginForm("PurchaseConfirm", "PurchaseCart", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>purechase Details</h4>
+        <hr />
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       <h3 class="text-danger">@ViewBag.Message</h3>
+        <div class="form-group">
+
+            <label class="control-label col-md-2">Purachse Description</label>
+            <div class="col-md-6">
+                <input class="form-control" type="text" id="item.Description" name="item.Description" placeholder="Enter Description... " required />
+            </div>
+        </div>
+         <div class="form-group">
+
+            <label class="control-label col-md-2">Is Purachse Payment Paid?</label>
+            <div class="col-md-6">
+                <input class="form-control" type="checkbox" id="IsPayment" name="IsPayment"   />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                  </div>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+        <div class="card card-flat ">
+            <div class="card-header">
+                @* @Html.ActionLink("Set Account Flow", "Create", null, new { @style = "float:left;", @class = "btn btn-primary" })*@
+                @ViewBag.Message
+                
+                <input class="form-control col-md-3" style="float:left" type="text" id="search" name="search" placeholder="search here" />
+                <input type="submit" value="Finilize Puchase" class="btn btn-success"style="float:right" />
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive ">
+                    @*<div class="table-responsive bootgrid">*@
+                    @*<table class="table table-striped" id="bootgrid-basic">*@
+                    
+                    <table class="table table-striped table-bordered table-hover " id="dataTable">
+
+                        @*<table class="table table-responsive-sm bootgrid">*@
+                        <thead>
+                            <tr>
+                                @*<td style="display:none">
+                                    SupplierID
+                                </td>*@
+                               <td>
+                                    Supplier
+                                </td>
+                                <td>
+                                    ConatctNo
+                                </td>
+                                @*<td>
+                                        @Html.DisplayNameFor(modelItem => item.SupplierAddress)
+                                    </td>*@
+                                <td>
+                                    Supplier Email
+                                </td>
+                                @*<th>
+                                        @Html.DisplayNameFor(model => model.Discription)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tblBranch.BranchName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tblCompany.Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tblUser.FullName)
+                                    </th>*@
+
+
+                                <th>Action</th>
+                            </tr>
+
+                        </thead>
+                        <tbody id="seelctsupl">
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    @*<td style="display:none">
+                                        @Html.EditorFor(modelItem => item.SupplierID)
+                                    </td>*@
+                                 <td>
+                                        @Html.DisplayFor(modelItem => item.SupplierName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SupplierConatctNo)
+                                    </td>
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.SupplierAddress)
+                                        </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SupplierEmail)
+                                    </td>
+                                    <td>
+                                    @*    <input type="radio" id="item.Status" name="item.Status" class="form-control" />*@
+                                        <input type="checkbox" id="@item.SupplierID" name="@item.SupplierID"  class="chb" />
+                                    </td>
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.Discription)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tblBranch.BranchName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tblCompany.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tblUser.FullName)
+                                        </td>*@
+                                    @* <td>
+                                                            @Html.ActionLink("Finilize", "PurchaseConfirm", new { id = item.SupplierID }, new { @class = "btn btn-success" }) |
+                                                           @Html.ActionLink("Details", "Details", new { id=item.SupplierID }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id=item.SupplierID })
+                                                            </td>
+                                    *@
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#search").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#seelctsupl tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+                });
+            });
+            $(".chb").change(function (event) {
+                $(".chb").prop('checked', false);
+                $(this).prop('checked', true);
+
+
+            });
+        });
+    </script>

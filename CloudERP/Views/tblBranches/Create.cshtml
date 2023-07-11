@@ -1,0 +1,87 @@
+﻿@model DatabaseAccess.tblBranch
+
+@{
+    ViewBag.Title = "Add Branch";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BrchID, "Select Upper Branch", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.DropDownList("BrchID", null, "Select Branch", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.BrchID, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BranchTypeID, "Branch Level", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.DropDownList("BranchTypeID", null, "Select Branch Level", htmlAttributes: new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.BranchTypeID, "", new { @class = "text-danger" })
+            </div>
+        </div>  
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BranchName, "Branch Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.BranchName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BranchName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BranchContact, "Contact No", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.BranchContact, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BranchContact, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BranchAddress, "Branch Address", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BranchAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BranchAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.CompanyID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CompanyID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CompanyID, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+
+
+
+        @*@Html.LabelFor(model => model.BrchID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BrchID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BrchID, "", new { @class = "text-danger" })
+            </div>*@
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-success" />
+            @Html.ActionLink("All Branches", "Index",null,new { @class = "btn btn-default" })
+        </div>
+    </div>
+</div>
+}
+
+ 

@@ -1,0 +1,118 @@
+﻿@*@model IEnumerable<DatabaseAccess.tblSupplierPayment>*@
+@model IEnumerable<DatabaseAccess.Model.SalePaymentModel>
+
+@{
+    ViewBag.Title = "Sale Payment Details";
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+
+<div class="card">
+    <div class="card card-flat ">
+        <div class="card-header">
+            @*<h3>Purchase Invoice Payment Details</h3>*@
+            <input class="form-control col-md-3" style="float:right" type="text" id="search" name="search" placeholder="search here" />
+        </div>
+        <div class="card-body">
+            <div class="table-responsive ">
+                @*<div class="table-responsive bootgrid">*@
+                @*<table class="table table-striped" id="bootgrid-basic">*@
+                <table class="table table-striped table-bordered table-hover " id="dataTable">
+
+                    @*<table class="table table-responsive-sm bootgrid">*@
+                    <thead>
+                        <tr>
+                            @*<th style="display:none;">
+                                    SupplierInvoiceID
+                                </th>*@
+                            <th>
+                                Supplier
+                            </th>
+                            <th>
+                                Contact No
+                            </th>
+                            <th>
+                                Invoice No
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Total Amount
+                            </th>
+                            <th>
+                                Paid Amount
+                            </th>
+                            <th>
+                                Remaing Balance
+                            </th>
+
+                            @*<th>Actions</th>*@
+
+                        </tr>
+
+                    </thead>
+                    <tbody id="FinancialYearlist">
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CustomerName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CustomerConatctNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InvoiceNo)
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.InvoiceDate)*@
+
+                                    @item.InvoiceDate.ToString("MMMM dd, yyyy")
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PaymentAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RemainingBalance)
+                                </td>
+                                @*<td>
+                                        @if (item.TotalAmount - 1 > item.PaymentAmount)
+                                        {
+                                            @Html.ActionLink("Paid Amount", "PaidAmount", new { id = item.SupplierInvoiceID }, new { @class = "btn btn-primary" })
+                                        }
+                                        @if (item.PaymentAmount > 0)
+                                        {
+                                            @Html.ActionLink("Paid History", "PaidHistory", new { id = item.SupplierInvoiceID }, new { @class = "btn btn-info" })
+                                        }
+                                    </td>*@
+
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#FinancialYearlist tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+            });
+        });
+    });
+</script>
+
+

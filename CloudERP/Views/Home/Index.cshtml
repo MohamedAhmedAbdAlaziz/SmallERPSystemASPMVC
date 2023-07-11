@@ -1,0 +1,435 @@
+﻿<link href="~/Content/Tamplate/css/Style.css" rel="stylesheet" />
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+ 
+    <style>
+       /* section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }*/
+    </style>
+    <script src="~/Scripts/chart.js"></script>
+
+</head>
+<body>
+
+    <div class="banner">
+        <header>
+            <a href="#" class="logo">salesforce ERP system</a>
+            <div class="toggle"></div>
+        </header>
+
+        <img src="~/newScript/assets/bg.jpg" />
+        <div class="content">
+            <h2>Enterprise resource planning</h2>
+            <p>Create Now Complete for your Company</p>
+            <p>
+
+                We will introduce Importance ERP and why you need to use ERP your company Sales force Help you in it
+            </p>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+    <section style="background: white; margin-top:50px; height:1400px">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div style="width:80%; padding-top:50px;color:black ">
+                        <h2 style="text-align:center; color:black">This is Percentage of sale  for each product in this branch</h2>
+                        <canvas id="myChart" style="width: 500px; height: 500px;color:black"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div style="width:80%; padding-top:50px;color:black ">
+                        <h3 style="text-align:center; color:black">This is Percentage of Purchase for each product in this branch</h3>
+                        <canvas id="myChart2" style="width: 500px; height: 500px"></canvas>
+                    </div>
+
+
+
+                </div>
+                <div class="col-md-6">
+                    <div style="width:80%; padding-top:100px;color:black ">
+                        <h2 style="text-align:center; color:black">This is Percentage of sale for each product in this branch</h2>
+                        <canvas id="myChart3" style="width: 500px; height: 500px;color:black"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div style="width:80%; padding-top:105px;color:black ">
+                        <h3 style="text-align:center; color:black">This is Percentage of Purchase for each product in this branch</h3>
+                        <canvas id="myChart4" style="width: 500px; height: 500px"></canvas>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container" style="margin-top: 60px;
+        opacity: 1;
+        transform: translateY(20px);
+        transition: 0.7s all ease-in-out;
+">
+        <div class="row" id="employeelist">
+
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <h1 style=" text-align: center;   font-size: 100px;   color: black;">@ViewBag.employess</h1>
+                    <div class="card-body" style="background-color:cornflowerblue; color: white; height: 150px; ">
+                        <h1 class="card-title" style="text-align:center; font-size:40px ; padding-top:30px"> Employees </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <h1 style=" text-align: center;   font-size: 100px;   color: black;">@ViewBag.employess2</h1>
+                    <div class="card-body" style="background-color:cornflowerblue; color: white; height: 150px; ">
+                        <h1 class="card-title" style="text-align:center; font-size:40px ; "> Employee's Branch </h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <h1 style=" text-align: center;   font-size: 100px;   color: black;">@ViewBag.branches </h1>
+                    <div class="card-body" style="background-color:cornflowerblue; color: white; height: 150px; ">
+                        <h1 class="card-title" style="text-align:center; font-size:40px ; padding-top:30px"> Branches </h1>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <h1 style=" text-align: center;   font-size: 100px;   color: black;">@ViewBag.stocks</h1>
+                    <div class="card-body" style="background-color:cornflowerblue; color: white; height: 150px; ">
+                        <h1 class="card-title" style="text-align:center; font-size:40px ; padding-top:30px"> Products </h1>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <h1 style=" text-align: center;   font-size: 100px;   color: black;">@ViewBag.supliers</h1>
+                    <div class="card-body" style="background-color:cornflowerblue; color: white; height: 150px; ">
+                        <h1 class="card-title" style="text-align:center; font-size:40px ; padding-top:30px"> Suppliers </h1>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <h1 style=" text-align: center;  font-size: 100px;   color: black;">@ViewBag.customers</h1>
+                    <div class="card-body" style="background-color:cornflowerblue; color: white; height: 150px; ">
+                        <h1 class="card-title" style="text-align:center; font-size:40px ; padding-top:30px"> Customers </h1>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+    <!--<section style="background: white; margin-top:50px; height:2000px">-->
+    @*<div style="width: 500px; height: 500px">
+            <canvas id="myChart3" style="width: 500px; height: 500px"></canvas>
+        </div>
+
+        <div style="width: 500px; height: 500px">
+            <canvas id="myChart4" style="width: 500px; height: 500px"></canvas>
+        </div>*@
+
+    <!--</section>-->
+
+
+
+    <script>
+
+    // let labels1 = ["Yes", "YES BUt IN Green", "bad"];
+   //  let data1 = [69, 10, 21,34,44];
+       // let colors1 = ["#49A9EA", "#36CAAB", "red"];
+
+        let colors1 = [
+            "#49A9EA",
+            "#36CAAB",
+            "#34495E",
+            "#B370CF",
+            "#AC5353",
+
+        ];
+     @{
+         //ViewData["elementsqantity"]
+         //ViewData["elementsNames"]
+
+         //foreach (var item in (List<int>)ViewData["elementsqantity"])
+         //{
+         //    let labels1
+         //}
+
+
+         double[] a = ((List<double>)ViewData["elementsqantity"]).ToArray();
+         string[] cokj =((List<string>)ViewData["elementsNames"]).ToArray();
+
+
+
+         //int c = 0;
+         //foreach (var item in (List<int>) ViewData["elementsqantity"] )
+         //{
+         //    a[c] = item;
+         //    c++;
+         //}
+                 }
+
+        let someArray  = @Html.Raw(Json.Encode(a));
+        var someArray2 = @Html.Raw(Json.Encode(cokj));
+
+                 //let labels1 = ["Yes", "YES BUt IN Green", "bad"];
+                 //let data1 = [69, 10, 21];
+                 //let colors1 = ["#49A9EA", "#36CAAB", "red"];
+
+                 let myChart1 = document.getElementById("myChart").getContext("2d");
+
+                 let chart1 = new Chart(myChart1, {
+                     animationEnabled: true,
+                     theme: "dark1", // "light1", "light2", "dark1", "dark2"
+                     title: {
+                         text: "Top Oil Reserves"
+                     },
+                     type: "pie",
+                     data: {
+                         legendText: "Department wise Min and Max Salary",
+                         labels: someArray2,
+                         datasets: [
+                             {
+                                 label: "This is Percentage of sales for each Branchs",
+                                 data: someArray,
+                                 backgroundColor: colors1,
+                 },
+             ],
+         },
+         options: {
+         title: {
+             text: "Do you like Doughnuts?",
+                 display: true,
+             },
+         },
+     });
+
+
+        ////////////////////////////////////////////////
+
+
+     @{
+         //ViewData["elementsqantity"]
+         //ViewData["elementsNames"]
+
+         //foreach (var item in (List<int>)ViewData["elementsqantity"])
+         //{
+         //    let labels1
+         //}
+
+
+         double[] a2 = ((List<double>)ViewData["elementsqantity2"]).ToArray();
+         string[] cokj2 =((List<string>)ViewData["elementsNames2"]).ToArray();
+
+
+
+         //int c = 0;
+         //foreach (var item in (List<int>) ViewData["elementsqantity"] )
+         //{
+         //    a[c] = item;
+         //    c++;
+         //}
+                 }
+
+        let anyArray  = @Html.Raw(Json.Encode(a2));
+        var anyArray2 = @Html.Raw(Json.Encode(cokj2));
+
+                 //let labels1 = ["Yes", "YES BUt IN Green", "bad"];
+                 //let data1 = [69, 10, 21];
+                 //let colors1 = ["#49A9EA", "#36CAAB", "red"];
+
+                 let myChart2 = document.getElementById("myChart2").getContext("2d");
+
+                 let chart2 = new Chart(myChart2, {
+                     animationEnabled: true,
+                     theme: "dark1", // "light1", "light2", "dark1", "dark2"
+                     title: {
+                         text: "Top Oil Reserves"
+                     },
+                     type: "bar",
+                     data: {
+                         legendText: "Department wise Min and Max Salary",
+                         labels: anyArray2,
+                         datasets: [
+                             {
+                                 label: "This is Percentage of purchases for each Branchs",
+                                 data: anyArray,
+                                 backgroundColor: colors1,
+
+                 },
+             ],
+         },
+         options: {
+         title: {
+             text: "Do you like Doughnuts?",
+                 display: true,
+             },
+         },
+     });
+
+        //////////////////////////////////////////////////////////////////
+           //ViewData["elementsqantity"]
+         //ViewData["elementsNames"]
+
+         //foreach (var item in (List<int>)ViewData["elementsqantity"])
+         //{
+         //    let labels1
+         //}
+
+        @{
+         double[] a3= ((List<double>)ViewData["elementsqantity3"]).ToArray();
+         string[] cokj3 =((List<string>)ViewData["elementsNames3"]).ToArray();
+
+
+
+         //int c = 0;
+         //foreach (var item in (List<int>) ViewData["elementsqantity"] )
+         //{
+         //    a[c] = item;
+         //    c++;
+         //}
+                 }
+
+        let elementsqantity3  = @Html.Raw(Json.Encode(a3));
+        var elementsNames3 = @Html.Raw(Json.Encode(cokj3));
+
+                 //let labels1 = ["Yes", "YES BUt IN Green", "bad"];
+                 //let data1 = [69, 10, 21];
+                 //let colors1 = ["#49A9EA", "#36CAAB", "red"];
+
+                 let myChart3 = document.getElementById("myChart3").getContext("2d");
+
+                 let chart3 = new Chart(myChart3, {
+                     animationEnabled: true,
+                     theme: "dark1", // "light1", "light2", "dark1", "dark2"
+                     title: {
+                         text: "Top Oil Reserves"
+                     },
+                     type: "bar",
+                     data: {
+                         legendText: "Department wise Min and Max Salary",
+                         labels: elementsNames3,
+                         datasets: [
+                             {
+                                 label: "This is Percentage of sale  for each product in this branch",
+                                 data: elementsqantity3,
+                                 backgroundColor: colors1,
+
+                 },
+             ],
+         },
+         options: {
+         title: {
+             text: "Do you like Doughnuts?",
+                 display: true,
+             },
+         },
+     });
+
+
+        ////////////////////////////////////////////////////////////////
+
+
+
+        @{
+         double[] a4= ((List<double>)ViewData["elementsqantity4"]).ToArray();
+         string[] cokj4 =((List<string>)ViewData["elementsNames4"]).ToArray();
+
+
+
+         //int c = 0;
+         //foreach (var item in (List<int>) ViewData["elementsqantity"] )
+         //{
+         //    a[c] = item;
+         //    c++;
+         //}
+                 }
+
+        let elementsqantity4  = @Html.Raw(Json.Encode(a4));
+        var elementsNames4 = @Html.Raw(Json.Encode(cokj4));
+
+                 //let labels1 = ["Yes", "YES BUt IN Green", "bad"];
+                 //let data1 = [69, 10, 21];
+                 //let colors1 = ["#49A9EA", "#36CAAB", "red"];
+
+                 let myChart4 = document.getElementById("myChart4").getContext("2d");
+
+                 let chart4 = new Chart(myChart4, {
+                     animationEnabled: true,
+                     theme: "dark1", // "light1", "light2", "dark1", "dark2"
+                     title: {
+                         text: "Top Oil Reserves"
+                     },
+                     type: "bar",
+                     data: {
+                         legendText: "Department wise Min and Max Salary",
+                         labels: elementsNames4,
+                         datasets: [
+                             {
+                                 label: "This is Percentage of Purchase for each product in this branch",
+                                 data: elementsqantity4,
+                                 backgroundColor: colors1,
+
+                 },
+             ],
+         },
+         options: {
+         title: {
+             text: "Do you like Doughnuts?",
+                 display: true,
+             },
+         },
+     });
+
+
+    </script>
+
+</body>
+</html>

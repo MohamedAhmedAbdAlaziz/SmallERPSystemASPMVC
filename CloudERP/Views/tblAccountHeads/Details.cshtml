@@ -1,0 +1,58 @@
+﻿@model DatabaseAccess.tblAccountHead
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblAccountHead</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountHeadName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountHeadName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUser.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUser.FullName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AccountHeadID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

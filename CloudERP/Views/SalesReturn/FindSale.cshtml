@@ -1,0 +1,407 @@
+﻿@model DatabaseAccess.tblCustomerInvoice
+
+@{
+//ViewBag.Title = "Search purchase by incoice No";
+}
+
+<style>
+    *{
+        color:black;
+    }
+</style>
+
+<h2>Find Purchase</h2>
+
+
+
+@using (Html.BeginForm("FindSale", "SalesReturn", FormMethod.Post, null))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+         
+        <hr />
+
+        <div class="form-group">
+
+            <label class="control-label col-md-2">Enter Sale Invoice No</label>
+            <div class="col-md-6">
+                <input class="form-control" type="text" id="inviceid" name="inviceid" placeholder="Enter Puchase invice..." required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+
+                <input type="submit" value="Find Purchase" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+    <script src="~/Scripts/import.js"></script>
+</head>
+<body>
+    <div class=" text-right mb-3">
+        <button class="btn btn-primary" id="download"> download pdf</button>
+    </div>
+
+    @{
+
+
+        try
+        {
+
+            double total = 0;
+            if (Model != null)
+            {
+
+                using (Html.BeginForm("ReturnConfirm", "PurchasesReturn", FormMethod.Post, null))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="card" id="invoiceImport">
+
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <h3 class="m-0">@Html.DisplayFor(model => model.InvoiceNo)</h3>
+                                @*<h3 class=" m-0 text-danger">(@Session["ReturnMessage"])</h3>*@
+                                <h3 class="ml-auto">Sale Invoice</h3>
+
+                                <input style="display:none;" id="dupplierinviceid" name="SupplierInvoiceid" value="@Model.CustomerInvoiceID" />
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col-xl-4 col-6 br py-2">
+                                    <div class="row">
+                                        <div class="col-lg-2 text-center d-none d-lg-block">
+                                            @*<em class="fa fa-plane fa-4x text-muted"></em>*@
+                                            @{
+
+                                                var logo = string.Empty;
+                                                if (string.IsNullOrEmpty(Convert.ToString(Session["Logo"])))
+                                                {
+                                                    logo = "~/Content/Tamplate/img/logo-single.png";
+
+
+                                                }
+                                                else
+                                                {
+
+                                                    logo = Convert.ToString(Session["Logo"]);
+
+                                                }
+
+                                            }
+
+                                            @*<img class="img-fluid  " src=@Url.Content(logo) style="width:90px; height:55px;" alt="App Logo">*@
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <h4> <img class="img-fluid  " src=@Url.Content(logo) style="width:90px; height:55px;" alt="App Logo"></h4>
+                                            <hr />
+                                            <h4>@Html.DisplayFor(model => model.tblCompany.Name) - @Html.DisplayFor(model => model.tblBranch.BranchName)</h4>
+                                            <address></address>Address: @Html.DisplayFor(model => model.tblBranch.BranchAddress)
+                                            <br>Contact No :@Html.DisplayFor(model => model.tblBranch.BranchContact)
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-6 br py-2">
+                                    <div class="row">
+                                     
+                                        <div class="col-lg-10">
+                                            <h3 style="padding-bottom:30px">Customer:</h3>
+                                            <hr />
+                                            <h4>@Html.DisplayFor(model => model.tblCustomer.Customername) </h4>
+                                            <address></address>Address: @Html.DisplayFor(model => model.tblCustomer.CustomerAddress)
+                                            <br>Contact No :@Html.DisplayFor(model => model.tblCustomer.CustomerContact)
+                                            @*<br>Email No :@Html.DisplayFor(model => model.tblCustomer.CustomerEmail)*@
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="col-xl-4 col-12 py-2">
+
+
+                                  <h3>Invoice:</h3>
+                                    <hr />
+                                    <div class="clearfix">
+
+                                        <p class="float-left" style="font-size:medium;font-weight:bold;">INVOICE NO.</p>
+                                        <p class="float-right mr-2" style="font-size:medium;font-weight:bold;">@Html.DisplayFor(model => model.InvoiceNo)</p>
+                                    </div>
+                                    <div class="clearfix">
+                                        <p class="float-left">Date</p>
+                                        <p class="float-right mr-2">@Html.DisplayFor(model => model.InvoiceDate)</p>
+                                        @*@Model.InvoiceDate.ToString("dd-MMMM-yyyy")*@
+                                    </div>
+                                    <div class="clearfix">
+                                        <p class="float-left">Created By </p>
+                                        <p class="float-right mr-2">@Html.DisplayFor(model => model.tblUser.FullName)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive table-bordered mb-3">
+                                <table class="table" style="color:black">
+                                    <thead>
+                                        <tr>
+                                            <th>Produt </th>
+                                            <th>Produt Qty</th>
+                                            @*///////////////////////////////////////////////////////////////////////*@
+                                            @*<th>Return Qty</th>*@
+                                            <th>Unit Price</th>
+                                            <th>item cost</th>
+                                            @*<th class="text-right">Return</th>*@
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.tblCustomerInvoiceDetails)
+                                        {
+                                            int qty = 0;
+                                            double itemcost = 0;
+                                            qty = item.SaleQuantity - item.tblCustomerReturnInvoiceDetails.Where(q => q.ProductID == item.ProductID).Sum(q => q.PurchaseReturnQuantity);
+                                            itemcost = qty * item.SaleUnitPrice;
+
+
+                                            total = total + itemcost;
+
+                                            <tr>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.tblStock.ProductName)
+                                                </td>
+                                                <td>
+                                                    @qty
+                                                </td>
+                                                @*////////////////////////////////////////////////////////*@
+                                                @*<td>
+                                                        <input type="number" value="0" id="ProductID @item.ProductID" name="ProductID @item.ProductID" class="form-control-sm" min="0" max="@qty" />
+                                                    </td>*@
+                                                @*<td>
+                                                        <input type="number" value="0" class="form-control-sm" min="1" max="@item.PurchaseQuantity" />
+                                                    </td>*@
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.SaleUnitPrice)
+                                                </td>
+                                                <td class="text-left">
+                                                    <label>@itemcost</label>
+                                                    @*<label>@((item.PurchaseQuantity * item.purchaseUnitPrice).ToString())</label>*@
+                                                </td>
+
+
+                                                @*<td>
+                                                        @Html.ActionLink("Return", "ReturnItem", "PurchaseReturn", new { @class = "btn btn-info",@style="float:right" })
+                                                    </td>*@
+
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6"></div>
+                                <div class="col-lg-6 py-2">
+                                    @*<div class="row mb-3 align-items-center">
+                                            <div class="col-7">
+                                                <div class="h3">Is Purchase Payment Paid </div>
+                                            </div>
+                                                <div class="col-5">
+                                                    <div class="text-right h3"> <input  type="checkbox" name="IsPayment" /></div>
+                                                </div>
+
+                                        </div>*@
+
+                                    <div class="row mb-3 align-items-center">
+                                        <div class="col-7">
+                                            <div class="h3">GRAND TOTAL</div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="text-right h3">PEG @total.ToString("F2")</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="d-print-none">
+                            <div class="clearfix">
+                                @*<button class="btn btn-info float-left mr-2" type="button">Edit</button>
+                                    <button class="btn btn-secondary float-left" type="button" onclick="window.print();">Print</button>*@
+                                @*<button class="btn btn-success float-right" type="submit">Submit Return</button>*@
+                                <span style="color: darkorange">&copy; 2021- salesforce ERP system</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+        catch
+        {
+
+        }
+    }
+
+    <script>
+        window.onload = function () {
+            document.getElementById("download")
+                .addEventListener("click", () => {
+                    const invoice = this.document.getElementById("invoiceImport");
+                    console.log(invoice);
+                    console.log(window);
+                    var opt = {
+                        margin: 1,
+                        filename: 'myfile.pdf',
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { scale: 2 },
+                        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    };
+                    html2pdf().from(invoice).set(opt).save();
+                })
+        }
+    </script>
+</body>
+</html>
+
+
+
+@*<div>
+        @Html.ActionLink("Return Purchase", "ReturnFullPurchase", null, new { @class = "btn btn-primary", @style = "float:right;" })
+
+        <h4>Invoice Details</h4>
+        <table class="table table-bordered" style="background-color:ghostwhite">
+            <thead>
+                <tr>
+                    <th>
+                        Invoice No
+                    </th>
+                    <th>
+                        Invoice Date
+                    </th>
+
+                    <th>
+                        Suppliers
+                    </th>
+
+                    <th>
+                        Total Amount
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        User
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+
+                        @Html.DisplayFor(model => model.InvoiceNo)
+
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(model => model.InvoiceDate)
+
+                    </td>
+
+
+                    <td>
+
+                        @Html.DisplayFor(model => model.tblSupplier.SupplierName)
+
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(model => model.TotalAmount)
+
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(model => model.Description)
+
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(model => model.tblUser.FullName)
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>*@
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.SupplierInvoiceID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+
+
+@*<div>
+        <h4>Invoice Details</h4>
+
+        <table class="table table-hover" style="background-color:ghostwhite">
+            <thead>
+                <tr>
+                    <th>
+                        Invoice No
+                    </th>
+                    <th>
+                        Product
+                    </th>
+                    <th>
+                        Qty
+                    </th>
+                    <th>
+                        Unit Price
+                    </th>
+                    <th>Item Cost</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.tblSupplierInvoiceDetails)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tblSupplierInvoice.InvoiceNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tblStock.ProductName)
+                        </td>
+                        <td>
+                            @Html.EditorFor(modelItem => item.PurchaseQuantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.purchaseUnitPrice)
+                        </td>
+                        <td style="float:left">
+                            <label>@(item.PurchaseQuantity * item.purchaseUnitPrice)</label>
+                        </td>
+
+
+                        <td>
+                            @Html.ActionLink("Return", "ReturnItem", null, new { @class = "btn btn-info" })
+                        </td>
+
+
+                    </tr>
+                }
+
+
+            </tbody>
+
+        </table>
+
+    </div>*@
+
+
+
+
+

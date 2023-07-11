@@ -1,0 +1,66 @@
+﻿@model DatabaseAccess.tblAccountSetting
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblAccountSetting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tblAccountActivity.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblAccountActivity.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblAccountControl.AccountControlName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblAccountControl.AccountControlName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblAccountHead.AccountHeadName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblAccountHead.AccountHeadName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblAccountSubControl.AccountSubControlName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblAccountSubControl.AccountSubControlName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblBranch.BranchName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblBranch.BranchName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblCompany.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCompany.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AccountSettingID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

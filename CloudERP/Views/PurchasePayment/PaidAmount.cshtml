@@ -1,0 +1,170 @@
+﻿@*@model IEnumerable<DatabaseAccess.tblSupplierPayment>*@
+@model IEnumerable<DatabaseAccess.Model.PurchasePaymentModel>
+@using DatabaseAccess;
+@{
+    //double remaingbalance = 0;
+    ViewBag.Title = "Purchase Payment";
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<div class="card">
+    <div class="card card-flat ">
+        <div class="card-header">
+
+            <h3>Enter Details</h3>
+
+            @*<input class="form-control col-md-3" style="float:right" type="text" id="search" name="search" placeholder="search here" />*@
+            <h5 class="text-danger">@ViewBag.Message</h5>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("PaidAmount", "PurchasePayment", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="text" id="id" value="@ViewBag.InvoiceID" name="id" style="display:none;" />
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Previous Remaining Amount</label>
+                <input type="text" id="previousremainingamount" name="previousremainingamount" value="@ViewBag.PreviousRemaining" readonly="readonly" class="form-control" required /> 
+                        @*<input type="text" id="previousremainingamount" name="previousremainingamount" value="@remaingbalance" readonly="readonly" class="form-control" required />*@
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Payment Amount</label>
+                        <input min="0" type="number" id="paymentamount" name="paymentamount" class="form-control" required />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Current Remaining Amount</label>
+                        <input type="text" id="remainingamount" name="remainingamount" readonly="readonly" class="form-control" />
+                    </div>
+                </div>
+                <br />
+                <hr />
+                <input type="submit" value="Submit Payment" class="btn btn-success" style="float:right;" />
+
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card card-flat ">
+        <div class="card-header">
+
+            <h3 style="float:left">Purchase Invoice paid Details</h3>
+            <input class="form-control col-md-3" style="float:right" type="text" id="search" name="search" placeholder="search here" />
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive ">
+                @*<div class="table-responsive bootgrid">*@
+                @*<table class="table table-striped" id="bootgrid-basic">*@
+                <table class="table  table-hover " id="dataTable">
+
+                    @*<table class="table table-responsive-sm bootgrid">*@
+                    <thead>
+                        <tr>
+                            @*<th style="display:none;">
+                                    SupplierInvoiceID
+                                </th>*@
+                            <th>
+                                Supplier
+                            </th>
+                            <th>
+                                Contact No
+                            </th>
+                            <th>
+                                Invoice No
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Total Amount
+                            </th>
+                            <th>
+                                Paid Amount
+                            </th>
+                            <th>
+                                Remaing Balance
+                            </th>
+
+                            @*<th>Actions</th>*@
+
+                        </tr>
+
+                    </thead>
+                    <tbody id="FinancialYearlist">
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SupplierName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SupplierConatctNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InvoiceNo)
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.InvoiceDate)*@
+
+                                    @item.InvoiceDate.ToString("MMMM dd, yyyy")
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PaymentAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RemainingBalance)
+                                </td>
+                                @*<td>
+                                        @if (item.TotalAmount - 1 > item.PaymentAmount)
+                                        {
+                                            @Html.ActionLink("Paid Amount", "PaidAmount", new { id = item.SupplierInvoiceID }, new { @class = "btn btn-primary" })
+                                        }
+                                        @if (item.PaymentAmount > 0)
+                                        {
+                                            @Html.ActionLink("Paid History", "PaidHistory", new { id = item.SupplierInvoiceID }, new { @class = "btn btn-info" })
+                                        }
+                                    </td>*@
+
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#FinancialYearlist tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+            });
+        });
+        @*$("#previousremainingamount").val(@remaingbalance)
+        $('#paymentamount').max(@remaingbalance);*@
+        $("#paymentamount").on("keyup", function () {
+            var previousremainingamount = $('#previousremainingamount').val();
+            var payment = this.value;
+            $('#remainingamount').val((previousremainingamount - payment));
+        });
+    });
+
+</script>
+

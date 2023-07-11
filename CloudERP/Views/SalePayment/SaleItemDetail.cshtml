@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DatabaseAccess.tblCustomerInvoiceDetail>
+
+@{
+    ViewBag.Title = " History of Sales";
+    double total=0;
+}
+
+ 
+ 
+<table class="table">
+    <tr>
+        <th>
+            Invoice No
+        </th>
+        <th>
+            Product
+        </th>
+        <th>
+            Qty
+        </th>
+        <th>
+            Unit Price
+        </th>
+        <th>Item Cost</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tblCustomerInvoice.InvoiceNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tblStock.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SaleQuantity)
+               
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SaleUnitPrice)
+            </td>
+            <td>
+                <label>@(item.SaleQuantity * item.SaleUnitPrice)</label>
+                @{
+                    total += (item.SaleQuantity * item.SaleUnitPrice);
+                }
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+
+<div class="row">
+    <div class="col-lg-6"></div>
+    <div class="col-lg-6 py-2">
+
+
+        <div class="row mb-3 align-items-center">
+            <div class="col-7">
+                <div class="h3">GRAND TOTAL</div>
+            </div>
+            <div class="col-5">
+                <div class="text-left h3"  style="color:blue">PEG @total.ToString("F2")</div>
+            </div>
+        </div>
+    </div>
+</div>

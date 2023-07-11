@@ -1,0 +1,94 @@
+﻿@*@model IEnumerable<DatabaseAccess.tblAccountControl>
+    @using DatabaseAccess*@
+@model IEnumerable<CloudERP.Models.AccountControlMV>
+@*@using CloudERP.Models.*@
+@{
+    ViewBag.Title = "Account Controls";
+}
+
+ 
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+
+<div class="card">
+    <div class="card card-flat ">
+        <div class="card-header">
+            @Html.ActionLink("Create New Product", "Create", null, new { @style = "float:left;", @class = "btn btn-primary" })
+            <input class="form-control col-md-3" style="float:right" type="text" id="searchaccount" name="searchaccount" placeholder="search here" />
+        </div>
+        <div class="card-body">
+            <div class="table-responsive ">
+                @*<div class="table-responsive bootgrid">*@
+                @*<table class="table table-striped" id="bootgrid-basic">*@
+                <table class="table table-striped table-bordered table-hover " id="dataTable">
+
+                    @*<table class="table table-responsive-sm bootgrid">*@
+                    <thead>
+                        <tr>
+                            <th>
+                                Account Head
+                            </th>
+                            <th>
+                                Control
+                            </th>
+
+                            <th>
+                                User
+                            </th>
+
+                            <th>Actions</th>
+                           
+                        </tr>
+
+                    </thead>
+                    <tbody id="Accountslist">
+                        @foreach (var item in Model)
+                        {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AccountHeadName)
+                                @*@{
+                                    var headid = item.AccountControlID;
+                                    var headname = (new CloudErpV1Entities()).tblAccountHeads.Find(item.AccountControlID).AccountHeadName;
+                                    Html.Display(headname);
+                                    }*@
+
+                                @*@Html.DisplayFor(modelItem => item.AccountHeadID)*@
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AccountControlName)
+                            </td>
+
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.tblUser.FullName)*@
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+
+                            <td class="btn-group">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.AccountControlID }, new { @class = "btn btn-success" })
+                                @*@Html.ActionLink("Details", "Details", new { id=item.AccountControlID }) |
+                               @Html.ActionLink("Delete", "Delete", new { id=item.AccountControlID })*@
+                            </td >
+ 
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#searchaccount").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#Accountslist tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+            });
+        });
+    });
+</script>
+ 
